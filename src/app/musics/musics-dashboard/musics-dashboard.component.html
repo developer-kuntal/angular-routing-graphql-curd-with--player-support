@@ -1,0 +1,144 @@
+<!-- <div *ngIf="loading">
+    Loading...
+  </div>
+  <div *ngIf="error">
+    Error :(
+  </div>
+  <div *ngIf="rates">
+    <div *ngFor="let rate of rates">
+      <p>{{ rate.currency }}: {{ rate.rate }}: {{rate.name}}</p>
+    </div>
+</div> -->
+<h1 class="title">Audio App</h1>
+
+<!-- <ul>
+  <li *ngFor="let file of files" (click)="openFile(file.url)">
+    {{file.name}}
+  </li>
+</ul> -->
+
+<!-- <div>
+  <button (click)="play()">Play</button>
+  <button (click)="pause()">Pause</button>
+  <button (click)="stop()">Stop</button>
+</div> -->
+
+<div class="song_ppsb">
+  <button (click)="play()"><mat-icon>play_circle_outline</mat-icon></button>
+  <button (click)="pause()"><mat-icon>pause_circle_outline</mat-icon></button>
+  <button (click)="stop()"><mat-icon>stop</mat-icon></button>
+</div>
+
+<div class="duration">
+  <span>{{currentTime}}</span>
+  <input type="range" min="0" max="{{durationInsec}}" [value]="seek" (input)="setSeekTo($event) "/>
+  <span>{{duration}}</span>
+</div>
+
+<div class="volume">
+  <span>Volume</span>
+  <input type="range" min="0" max="1" step="0.01" value="0.5" (input)="setVolume($event)"/>
+</div>
+
+<nav class="navbar">
+  <!-- <input class="form-control" type="text" name="searchValue" [(ngModel)]="searchValue" id="search" 
+           placeholder="Enter Something to search"/> -->
+           <!-- {{isCatagory | json}} -->
+  <label class="label-control">Catagory: </label>
+  <select class="form-select" name="cat" [(ngModel)]="isCatagory" 
+  (change)="setCatagory($event)" id="cata">
+    <option  value="select" selected="selected">Select</option>
+    <option  value="title">Title</option>
+    <option  value="album">Album</option>
+    <option  value="artist">Artist</option>
+    <option  value="lyric">Lyric</option>
+    <!-- <option *ngFor="let catagory of catagories;let i = index;" id={{i}} name="cat" selected="selected" 
+          [value]="isCatagory">{{catagory}}</option> -->
+  </select>
+
+  <div [ngSwitch]="isCatagory">
+    <div *ngSwitchCase="'title'">
+      <ng-select [items]="songs"
+                    bindLabel="title"
+                    bindValue="title"
+                    placeholder="Search by Song Title"
+                    name="searchValue"
+                  [(ngModel)]="searchValue">
+      </ng-select>
+    </div>
+    <div *ngSwitchCase="'album'">
+      <ng-select  [items]="album"
+                    bindLabel="album"
+                    bindValue="album"
+                    placeholder="Search by Album Name"
+                  [(ngModel)]="searchValue">
+      </ng-select>
+    </div>
+    <div *ngSwitchCase="'artist'">
+      <ng-select  [items]="artist"
+                    bindLabel="artist"
+                    bindValue="artist"
+                    placeholder="Search by Artist Name"
+                  [(ngModel)]="searchValue">
+      </ng-select>
+    </div>
+    <div *ngSwitchCase="'lyric'">
+      <ng-select  [items]="lyric"
+                    bindLabel="lyric"
+                    bindValue="lyric"
+                    placeholder="Search by Song Lyric"
+                  [(ngModel)]="searchValue">
+      </ng-select>
+    </div>
+    <div *ngSwitchDefault>Select Something to Search</div>
+  </div>
+  
+</nav>
+
+<!-- <div class="ng-autocomplete">
+  <ng-autocomplete 
+    [data]="songs"
+    [searchKeyword]="keyword"
+    (selected)='selectEvent($event)'
+    (inputChanged)='onChangeSearch($event)'
+    (inputFocused)='onFocused($event)'
+    [itemTemplate]="itemTemplate"
+    [notFoundTemplate]="notFoundTemplate">                                 
+  </ng-autocomplete>
+  
+  <ng-template #itemTemplate let-item>
+  <a [innerHTML]="item.title"></a>
+  </ng-template>
+  
+  <ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound"></div>
+  </ng-template>
+</div> -->
+
+<div *ngIf="loading">
+  <button class="btn btn-warning" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    Loading...
+  </button>
+</div>
+
+<div *ngIf="error">
+  Error :(
+</div>
+
+<div *ngIf="songs"> 
+  <div *ngFor="let song of songs | musicsSearchFilter:searchValue | paginate: {
+    itemsPerPage: 10, 
+    currentPage: page,
+    totalItems: totalLength
+  }">
+      <div class="song-container" >
+          <p class="song" (click)="openFile(song.name)">{{ song.title }}</p>
+        <div class="edit-song-btn">
+          <button class="btn-edit" (click)="onClick(song)"><mat-icon>edit</mat-icon></button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<pagination-controls class="my-pagination" (pageChange)="page = $event; paginate(page)"></pagination-controls>

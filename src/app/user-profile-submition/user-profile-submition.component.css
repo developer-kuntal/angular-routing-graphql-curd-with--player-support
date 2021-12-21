@@ -1,0 +1,57 @@
+/* form {
+    justify-align: center;
+    margin: 10px 30px;
+    padding: 10px 5px;
+  }
+
+  .form-group{
+    height: 70px;
+  }
+
+  .form-control{
+    display: inline-block;
+    height: 30px;
+    width: 100vh;
+    border-radius: 5px;
+    outline: 1px;
+    border: 2px solid blue;
+    margin: 10px 100px;
+    align-items: center;       
+    justify-content: space-between;
+  }
+
+  .label-control {
+    display: auto;
+    border: 2px solid teal;
+    background: orange;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    height: 60px;
+    width: 30vh;
+    justify-content: space-between;
+  }
+
+  .options {
+    height: 50px;
+    border: 2px solid seagreen;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    background: orange; 
+  }
+
+  .custome-select{
+    color: seagreen;
+    background: white;
+    height: 30px;
+  }
+
+  .btn-submit{
+    height: 50px;
+    width: 100vh;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background:crimson;
+  } */

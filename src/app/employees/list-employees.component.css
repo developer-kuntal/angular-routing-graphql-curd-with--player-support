@@ -1,0 +1,11 @@
+.imageClass {
+    width: 200px;
+    height: 200px;
+    /* border-radius: 50% 50%; */
+    border: 1px solid peru;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}

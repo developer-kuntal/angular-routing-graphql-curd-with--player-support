@@ -1,0 +1,46 @@
+<div>
+      <table>
+        <tr>
+          <th (click)="sort('name')">Name&nbsp;<mat-icon>swap_vert</mat-icon></th>
+          <th>Father/Husband</th>
+          <th>DOB</th>
+          <th>Gender</th>
+          <th>Primary Occupation</th>
+          <th>Current Address</th>
+          <th (click)="sort('mobile_number')">Contact Number&nbsp;<mat-icon>swap_vert</mat-icon></th>
+          <th (click)="sort('uan')">UAN&nbsp;<mat-icon>swap_vert</mat-icon></th>
+          <th>Delete</th>
+          <th>Edit</th>
+        </tr>
+        
+        <!-- <tr *ngFor="let user of users | paginate: {
+                id: 'foo',
+                itemsPerPage: 1, 
+                currentPage: page,
+                totalItems: totalLength
+              }"
+        > -->
+        <tr *ngFor="let user of users | orderBy: key : reverse | paginate: {
+          itemsPerPage: 10, 
+          currentPage: page,
+          totalItems: totalLength
+        }"
+        >
+        
+        <!-- <tr *ngFor="let user of users"> -->
+          <td>{{user.name}}</td>
+          <td>{{user.foh}}</td>
+          <td>{{user.dob | date: 'dd/MM/yyyy' }}</td>
+          <td>{{user.gender}}</td>
+          <td>{{user.primary_occupation}}</td>
+          <td>{{user.current_address}}</td>
+          <td>{{user.mobile_number}}</td>
+          <td>{{user.uan}}</td>
+          <td><button class="btn btn-danger" (click)="deleteUserProfile(user._id)"><mat-icon>delete</mat-icon></button></td>
+          <td><button class="btn btn-edit" (click)="onClick(user)"><mat-icon>edit</mat-icon></button></td>
+        </tr>
+      </table>
+
+      <!-- <pagination-controls (pageChange)="page = $event; paginate(page)"></pagination-controls> -->
+      <pagination-controls class="my-pagination" (pageChange)="page = $event; paginate(page)"></pagination-controls>
+</div>

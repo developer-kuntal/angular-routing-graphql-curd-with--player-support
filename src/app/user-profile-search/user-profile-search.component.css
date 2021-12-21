@@ -1,0 +1,44 @@
+tr th {
+    border: 2px solid rgb(136, 97, 58);
+    border-radius: 5px;
+}
+
+td {
+    height: 25px;
+    font-size: 12.5px;
+    margin: 2px, 2px;
+    border-radius: 2px;
+    color: black;
+    font-weight: bold;
+    border: 1px solid rgb(124, 0, 128);
+}
+
+tr {
+    padding: 5px;
+    text-align: center;
+    background-color: white;
+    color:cornflowerblue;
+    height: 30px;
+}
+
+tr:nth-child(even) {background-color: #b2f8cf; color: wheat;}
+
+.btn-danger {
+    color: indigo;
+    background-color: rgb(251, 255, 0);
+    opacity: 1;
+    border: 1px solid black;
+    /* padding: 5px 5px; */
+}
+
+.btn-edit {
+    color: rgb(233, 236, 27);
+    background-color: rgb(30, 4, 54);
+    opacity: 1;
+    border: 1px solid black;
+    /* padding: 5px 5px; */
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+    background: red;
+}

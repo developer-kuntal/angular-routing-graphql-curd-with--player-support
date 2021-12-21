@@ -1,0 +1,59 @@
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">  
+  <!-- userForm.reset() -->
+
+  <!-- {{ userForm.value | json }}
+      <hr />
+       {{ userModel | json }} -->
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Create User</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="label-control">Name: </label>
+        <input type="name" placeholder="Enter Your Name" class="form-control" 
+            name="name" [(ngModel)]="userModel.name">
+      </div>
+      <div class="form-group">
+        <label class="label-control">Father or Husband: </label>
+        <input type="foh" placeholder="Type Father/Husband Name" class="form-control" 
+            name="foh" [(ngModel)]="userModel.foh">
+      </div>
+      <div class="form-group">
+        <label class="label-control">DOB: </label>
+        <input type="text" placeholder="mm/dd/yyyy" class="form-control" 
+                  bsDatepicker name="dob" [(ngModel)]="userModel.dob">
+      </div>
+      <div class="form-group">
+        <label class="label-control">Gender: </label>
+        <select class="form-select form-select-lg xs-3" aria-label=".form-select-lg example" 
+                    name="gender" [(ngModel)]="userModel.gender">
+          <option value="">Select</option>
+          <option *ngFor="let gender of genders">{{gender}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="label-control">Primary Occupation: </label>
+        <input type="pmo" class="form-control" name="pmo" [(ngModel)]="userModel.primary_occupation">
+      </div>
+      <div class="form-group">
+        <label class="label-control">Current Address: </label>
+        <input type="c_addr" class="form-control" name="c_addr" [(ngModel)]="userModel.current_address">
+      </div>
+      <div class="form-group">
+        <label class="label-control">Contact Number: </label>
+        <input type="mno" class="form-control" value="" name="mno" [(ngModel)]="userModel.mobile_number">
+      </div>
+      <div class="form-group">
+        <label class="label-control">UAN: </label>
+        <input type="uan" class="form-control" name="uan" [(ngModel)]="userModel.uan">
+      </div>
+    </div>
+    <div class="panel-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+  </div>
+
+</form>

@@ -1,0 +1,35 @@
+<!-- <div class="container">
+  <app-list-employees></app-list-employees>
+</div> -->
+
+<!-- The content below is only a placeholder and can be replaced.-->
+<!-- <div style="text-align:center">
+  <h1>
+    Routing Application
+    <-- {{ userModel | json}} --
+  </h1>
+</div> -->
+<div class="container">
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+  <ul class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <a class="nav-link" *ngIf="!_auth.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+      <a class="nav-link" *ngIf="!_auth.loggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
+      <a class="nav-link" style="cursor: pointer;" *ngIf="_auth.loggedIn()" (click)="_auth.logoutUser()">Logout</a>
+    </ul>
+  </ul>
+</nav>
+</div>
+
+<nav>
+  <a routerLink="/user-profile-details" routerLinkActive="active">User Profile Details</a>
+	<a routerLink="/user-profile-submition" routerLinkActive="active">User Profile Submission</a>
+  <!-- <a routerLink="/user-profile-edit" routerLinkActive="active">Edit User Profile</a> -->
+  <a routerLink="/user-profile-search" routerLinkActive="active">Search User Profile</a>
+  <a routerLink="/musics-dashboard" routerLinkActive="active">Musics Dash Board</a>
+  <!-- <a routerLink="/music-metatag-edit" routerLinkActive="active">Musics Meta Info Edit</a> -->
+</nav>
+
+<router-outlet></router-outlet>
+
+
