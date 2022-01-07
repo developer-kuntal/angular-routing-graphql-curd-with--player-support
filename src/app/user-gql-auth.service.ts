@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo, ApolloBase, gql } from 'apollo-angular';
-import { map, Observable, switchMap } from 'rxjs';
+import { map } from 'rxjs';
 import { Router } from '@angular/router';
 
 const USER_REGISTER = gql`
