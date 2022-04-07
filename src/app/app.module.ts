@@ -23,9 +23,14 @@ import { APOLLO_OPTIONS, APOLLO_NAMED_OPTIONS, NamedOptions } from 'apollo-angul
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 
+import { split, ApolloClientOptions } from '@apollo/client/core';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getMainDefinition } from '@apollo/client/utilities';
+
 import { HttpLinkModule, } from 'apollo-angular-link-http';
 import { GraphqlMusicApiService } from './musics/graphql-music-api.service';
 import { MusicsSearchFilterPipe } from './musics/musics-dashboard/musics-search-filter.pipe';
+import { SubscriberComponent } from './subscriber/subscriber/subscriber.component';
 
 
 
@@ -37,6 +42,7 @@ import { MusicsSearchFilterPipe } from './musics/musics-dashboard/musics-search-
     UserProfileSearchComponent,
     UserserachfilterPipe,
     MusicsSearchFilterPipe,
+    SubscriberComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +62,35 @@ import { MusicsSearchFilterPipe } from './musics/musics-dashboard/musics-search-
     {
     provide: APOLLO_NAMED_OPTIONS,
     useFactory: (httpLink: HttpLink) => {
+
+      // Create an http link:
+      const http = httpLink.create({
+        uri: 'http://localhost:3000/graphql',
+      });
+
+      // Create a WebSocket link:
+      const ws = new WebSocketLink({
+        uri: 'ws://localhost:3000/graphql',
+        options: {
+          reconnect: true,
+        },
+      });
+
+      // using the ability to split links, you can send data to each link
+      // depending on what kind of operation is being sent
+      const link = split(
+        // split based on operation type
+        ({query}) => {
+          const definition = getMainDefinition(query);
+          // const {kind, operation} = getMainDefinition(query);
+          return (
+            definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
+          );
+        },
+        ws,
+        http,
+      );
+
       return {
         newClientName: {
           cache: new InMemoryCache(),
@@ -74,6 +109,10 @@ import { MusicsSearchFilterPipe } from './musics/musics-dashboard/musics-search-
           link: httpLink.create({
             uri: 'http://localhost:4400/graphql',
           }),
+        },
+        appolloQueryMutationSubscriptionExample: {
+          cache: new InMemoryCache(),
+          link: link,
         }
       };
     },

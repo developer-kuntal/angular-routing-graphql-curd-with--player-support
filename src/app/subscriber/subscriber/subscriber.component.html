@@ -1,0 +1,10 @@
+<p>subscriber works!</p>
+<!-- <ul *ngIf="messages">
+    <li>Message: {{messages.text}}</li>
+    <li>Author: {{messages.createdBy}}</li>
+</ul> -->
+
+<ul *ngFor="let message of messages">
+    <li>Message: {{message.text}}</li>
+    <li>Author: {{message.createdBy}}</li>
+</ul>

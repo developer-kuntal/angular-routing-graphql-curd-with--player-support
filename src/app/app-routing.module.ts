@@ -10,6 +10,7 @@ import { MusicMetatagEditComponent } from './musics/music-metatag-edit/music-met
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
+import { SubscriberComponent } from './subscriber/subscriber/subscriber.component';
 
 const routes: Routes = [
   { 
@@ -44,6 +45,11 @@ const routes: Routes = [
     component: MusicMetatagEditComponent
   },
   { 
+    path: 'subscriber',
+    pathMatch: 'full',
+    component: SubscriberComponent
+  },
+  { 
     path: 'register',
     pathMatch: 'full',
     component: RegisterComponent
@@ -68,6 +74,7 @@ export const AppRoutingComponents = [
   UserProfileSearchComponent, 
   MusicsDashboardComponent,
   MusicMetatagEditComponent,
+  SubscriberComponent,
   RegisterComponent,
   LoginComponent
 ]
